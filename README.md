@@ -1,13 +1,14 @@
 # React + TypeScript + Vite + Axios
 Estes vao ser os 4 frameworks que irei utilizar
 
-React, estilização 
+React: Utilizado para criar interfaces de usuário bonitas e reativas.
 
-TypeScript, comunicacao com o usuario
+TypeScript: Usado para adicionar tipagem estática ao JavaScript, melhorando a comunicação com o usuário e aumentando a segurança e a manutenção do código.
 
-Vite, utilizar pela velocidade de resposta
+Vite: Utilizado como um ambiente de desenvolvimento para criar e construir rapidamente projetos React, oferecendo uma experiência de desenvolvimento rápida devido à sua arquitetura de
+construção baseada em ESM (ECMAScript Modules).
 
-Axios, conexoes http
+Axios: Utilizado para realizar as solicitações HTTP, como GET, POST, PUT, DELETE, etc., facilitando a comunicação entre o aplicativo React e o servidor backend.
 
 # Para startar o projeto :
 Caso vá rodar em outra máquina que nunca tenha rodado o mesmo.
