@@ -1,5 +1,4 @@
 # React + TypeScript + Vite + Axios
-Estes vao ser os 4 frameworks que irei utilizar
 
 React: Utilizado para criar interfaces de usuário bonitas e reativas.
 
