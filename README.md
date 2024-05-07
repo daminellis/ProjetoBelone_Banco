@@ -1,7 +1,7 @@
 # ProjetoBelone_Banco
 
 Projeto final do belone terceira fase
-Alunos : Matheus daminelli e Kauan Frasseto
+Alunos : Matheus daminelli e Kauã Frassetto
 
 Projeto banco
 
