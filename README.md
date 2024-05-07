@@ -8,6 +8,7 @@ Utilizaremos Python como maior fonte de codigo.
 Como iniciar o projeto do backend
 
 Startar a venv: (python -m venv venv)
+                
                 (.\venv\Scripts\activate)
 
 instalar o flaskapi (pip install flask)
