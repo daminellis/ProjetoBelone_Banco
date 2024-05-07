@@ -42,6 +42,7 @@ build/Release
 node_modules/
 venv/
 jspm_packages/
+__pycache__
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
