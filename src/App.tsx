@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css'; // Arquivo de estilo
+import './styles/App.css'; // Arquivo de estilo
 
 function MenuCadastro() {
   return (
