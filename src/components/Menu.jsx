@@ -1,9 +1,8 @@
 import React from 'react';
-import './styles/App.css'; // Arquivo de estilo
+import './MenuCadastro.css'; // Arquivo de estilo
 
 function MenuCadastro() {
   return (
-    <div className="corfundo">
     <div className="menu">
       <h1>Cadastro</h1>
       <form>
@@ -18,7 +17,6 @@ function MenuCadastro() {
         
         <button type="submit">Cadastrar</button>
       </form>
-    </div>
     </div>
   );
 }
