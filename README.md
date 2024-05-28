@@ -1,4 +1,4 @@
-# React + TypeScript + Vite + Axios
+# React + JavaScript + Vite + Axios
 
 React: Utilizado para criar interfaces de usuário bonitas e reativas.
 
