@@ -1,13 +1,17 @@
 import React from 'react';
-import MenuCadastro from './components/MenuCadastro';
-import './styles/App.css'; // Certifique-se de que esse arquivo contém estilos globais, se necessário
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
+import MenuCadastro from './components/MenuCadastro';
 
 function App() {
   return (
-    <div className="App">
-      <Login/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/menucad
+        " element={<MenuCadastro />} />
+      </Routes>
+    </Router>
   );
 }
 
