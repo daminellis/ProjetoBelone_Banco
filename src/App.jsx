@@ -8,8 +8,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/menucad
-        " element={<MenuCadastro />} />
+        <Route path="/MenuCadastro" element={<MenuCadastro />} />
       </Routes>
     </Router>
   );

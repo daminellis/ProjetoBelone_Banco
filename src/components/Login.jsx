@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Login.css'; // Adicione o arquivo CSS correspondente
+import '../styles/Login.css';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -38,6 +38,7 @@ const Login = () => {
                     />
                 </div>
                 <button type="submit">Login</button>
+                <a href="MenuCadastro">Nao possuí conta? Clique aqui!</a>
             </form>
         </div>
     );
