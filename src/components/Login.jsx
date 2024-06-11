@@ -38,7 +38,7 @@ const Login = () => {
                     />
                 </div>
                 <button type="submit">Login</button>
-                <a href="MenuCadastro">Nao possuí conta? Clique aqui!</a>
+                <a className="criarconta" href="MenuCadastro">Criar Conta</a>
             </form>
         </div>
     );
