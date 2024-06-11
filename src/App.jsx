@@ -4,12 +4,14 @@ import Login from './components/Login';
 import MenuCadastro from './components/MenuCadastro';
 import MenuUsuario from './components/MenuUsuario';
 import MenuBancario from './components/MenuBancario';
+import MenuAdimn from './components/MenuAdmin';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login/>} />
+        <Route path="/MenuAdmin" element={<MenuAdimn/>}/>
         <Route path="/MenuBancario" element={<MenuBancario/>}/>
         <Route path="/MenuCadastro" element={<MenuCadastro/>} />
         <Route path="/MenuUsuario" element={<MenuUsuario/>}/>
