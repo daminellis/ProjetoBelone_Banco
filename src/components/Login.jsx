@@ -1,22 +1,51 @@
 import React, { useState } from 'react';
 import '../styles/Login.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // Lógica de autenticação aqui
-        console.log('Email:', email);
-        console.log('Password:', password);
+
+        try {
+            const response = await axios.post('http://localhost:3000/logs', {
+                email,
+                senha: password
+            });
+
+            console.log('Resposta do servidor:', response.data);
+
+            // Verifica o nome do perfil retornado para redirecionar conforme necessário
+            switch (response.data.nomeperfil) {
+                case 'admin':
+                    navigate('/MenuAdmin');
+                    break;
+                case 'trabalhador':
+                    navigate('/MenuTrabalhador');
+                    break;
+                case 'bancario':
+                    navigate('/MenuBancario');
+                    break;
+                case 'funcionario':
+                    navigate('/MenuFuncionario');
+                    break;
+            }
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            setError('Usuario ou senha incorretos. Tente novamente');
+        }
     };
 
     return (
         <div className="login-container">
             <form onSubmit={handleLogin} className="login-form">
                 <h2>Login</h2>
+                {error && <div className="error-message">{error}</div>}
                 <div className="input-group">
                     <label htmlFor="email">Email:</label>
                     <input 
