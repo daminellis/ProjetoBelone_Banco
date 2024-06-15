@@ -1,5 +1,5 @@
 from controllers.logscontroller import logs_controller
 
 def login(app):
-    app.route('/logs', methods=['GET'])(logs_controller)
+    app.route('/logs', methods=['POST'])(logs_controller)
 
