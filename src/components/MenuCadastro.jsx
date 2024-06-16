@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import '../styles/MenuCadastro.css'; 
-import { Navigate } from 'react-router-dom';
+import '../styles/MenuCadastro.css';
+import { useNavigate } from 'react-router-dom'; // Use useNavigate hook
 
 function MenuCadastro() {
   const [formData, setFormData] = useState({
     nome: '',
-    email: '',
-    senha: '',
     numero: '',
     cpf: '',
-    areadetrabalho: '',
-    salario: '',
+    nascimento: '',
+    locdetrabalho: '',
+    email: '',
+    senha: '',
+    salario: ''
   });
+
+  const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Use navigate instead of history
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,17 +36,19 @@ function MenuCadastro() {
       },
       body: JSON.stringify(formData),
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao cadastrar usuário');
+      }
+      return response.json();
+    })
     .then(data => {
       console.log('Success:', data);
-  
-      navigate('/MenuAdmin');
-    
+      navigate('/'); // Navega para a rota após o cadastro bem-sucedido
     })
-    .catch((error) => {
-      console.error('Erro ao cadastrar usuario:', error);
-      setError('Falha no cadastro de usuarios. Tente novamente');
-    
+    .catch(error => {
+      console.error('Erro ao cadastrar usuário:', error);
+      setError('Falha no cadastro de usuário. Tente novamente.');
     });
   };
 
@@ -52,25 +58,30 @@ function MenuCadastro() {
         <h1>Cadastro</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="nome">Nome:</label>
-          <input type="text" id="nome" name="nome" value={formData.nome} onChange={handleChange} />
-          
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
-          
-          <label htmlFor="senha">Senha:</label>
-          <input type="password" id="senha" name="senha" value={formData.senha} onChange={handleChange} />
+          <input type="text" id="nome" name="nome" value={formData.nome} onChange={handleChange} required />
           
           <label htmlFor="numero">Número:</label>
-          <input type="text" id="numero" name="numero" value={formData.numero} onChange={handleChange} />
+          <input type="text" id="numero" name="numero" value={formData.numero} onChange={handleChange} required />
 
           <label htmlFor="cpf">CPF:</label>
-          <input type="text" id="cpf" name="cpf" value={formData.cpf} onChange={handleChange} />
+          <input type="text" id="cpf" name="cpf" value={formData.cpf} onChange={handleChange} required />
 
-          <label htmlFor="areadetrabalho">Área de Trabalho:</label>
-          <input type="text" id="areadetrabalho" name="areadetrabalho" value={formData.areadetrabalho} onChange={handleChange} />
+          <label htmlFor="nascimento">Data de Nascimento:</label>
+          <input type="date" id="nascimento" name="nascimento" value={formData.nascimento} onChange={handleChange} required />
+
+          <label htmlFor="email">Email:</label>
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+          
+          <label htmlFor="senha">Senha:</label>
+          <input type="password" id="senha" name="senha" value={formData.senha} onChange={handleChange} required />
+
+          <label htmlFor="locdetrabalho">Área de Trabalho:</label>
+          <input type="text" id="locdetrabalho" name="locdetrabalho" value={formData.locdetrabalho} onChange={handleChange} />
 
           <label htmlFor="salario">Salário:</label>
           <input type="text" id="salario" name="salario" value={formData.salario} onChange={handleChange} />
+
+          {error && <p className="error-message">{error}</p>}
 
           <button type="submit">Cadastrar</button>
         </form>

@@ -24,8 +24,8 @@ const Login = () => {
                 case 'admin':
                     navigate('/MenuAdmin');
                     break;
-                case 'trabalhador':
-                    navigate('/MenuTrabalhador');
+                case 'pessoas':
+                    navigate('/MenuUsuario');
                     break;
                 case 'bancario':
                     navigate('/MenuBancario');
