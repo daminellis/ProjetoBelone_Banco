@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/MenuCadastro.css'; // Verifique o caminho relativo
+import '../styles/MenuCadastro.css'; 
+import { Navigate } from 'react-router-dom';
 
 function MenuCadastro() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ function MenuCadastro() {
     e.preventDefault();
 
     // Enviar dados para o backend
-    fetch('http://seu-backend-url.com/cadastro', {
+    fetch('http://localhost:3000/cads', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,11 +35,14 @@ function MenuCadastro() {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
-      // Adicione lógica adicional para sucesso, como redirecionar ou exibir uma mensagem
+  
+      navigate('/MenuAdmin');
+    
     })
     .catch((error) => {
-      console.error('Error:', error);
-      // Adicione lógica adicional para erro, como exibir uma mensagem de erro
+      console.error('Erro ao cadastrar usuario:', error);
+      setError('Falha no cadastro de usuarios. Tente novamente');
+    
     });
   };
 
