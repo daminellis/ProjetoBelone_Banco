@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_cors import CORS  # Certifique-se de que a importação está correta
+from flask_cors import CORS 
 from database.db import db
 from routes.index import default_routes
 
