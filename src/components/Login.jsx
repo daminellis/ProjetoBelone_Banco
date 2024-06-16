@@ -20,7 +20,6 @@ const Login = () => {
 
             console.log('Resposta do servidor:', response.data);
 
-            // Verifica o nome do perfil retornado para redirecionar conforme necessário
             switch (response.data.nomeperfil) {
                 case 'admin':
                     navigate('/MenuAdmin');
@@ -67,7 +66,7 @@ const Login = () => {
                     />
                 </div>
                 <button type="submit">Login</button>
-                <a className="criarconta" href="MenuAdmin">Criar Conta</a>
+                <a className="criarconta" href="MenuCadastro">Criar Conta</a>
             </form>
         </div>
     );

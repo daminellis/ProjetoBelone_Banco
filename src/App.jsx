@@ -11,9 +11,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login/>} />
-        <Route path="/MenuAdmin" element={<MenuAdimn/>}/>
+        <Route path="/MenuCadastro" element={<MenuCadastro/>}/>
         <Route path="/MenuBancario" element={<MenuBancario/>}/>
-        <Route path="/MenuCadastro" element={<MenuCadastro/>} />
+        <Route path="/MenuAdmin" element={<MenuAdimn/>} />
         <Route path="/MenuUsuario" element={<MenuUsuario/>}/>
       </Routes>
     </Router>
