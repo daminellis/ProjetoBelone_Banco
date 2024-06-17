@@ -1,31 +1,39 @@
 .admin-menu {
-    background-color: #8A05BE;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-  }
-  
-  .admin-menu .welcome {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .admin-menu .menu-items {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .admin-menu .menu-items li {
-    padding: 10px;
-    border-bottom: 1px solid white;
-  }
-  
-  .admin-menu .menu-items li:last-child {
-    border-bottom: none;
-  }
-  
-  .admin-menu .menu-items li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
+  background-color: #8A05BE;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.admin-menu .welcome {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-menu .menu-items {
+  list-style-type: none;
+  padding: 0;
+}
+
+.admin-menu .menu-items li {
+  padding: 10px;
+  border-bottom: 1px solid white;
+}
+
+.admin-menu .menu-items li:last-child {
+  border-bottom: none;
+}
+
+.admin-menu .menu-items li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.admin-menu .menu-items li a {
+  color: white;
+  text-decoration: none; 
+}
+
+.admin-menu .menu-items li a:hover {
+  color: white; 
+}

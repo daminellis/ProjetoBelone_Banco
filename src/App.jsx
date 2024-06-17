@@ -5,6 +5,9 @@ import MenuCadastro from './components/MenuCadastro';
 import MenuUsuario from './components/MenuUsuario';
 import MenuBancario from './components/MenuBancario';
 import MenuAdimn from './components/MenuAdmin';
+import AddBancario from './components/AddBancario';
+import ListaBancarios from './components/ListaBancarios';
+import DetalhesBancarios from './components/DetalhesBancarios';
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
         <Route path="/MenuBancario" element={<MenuBancario/>}/>
         <Route path="/MenuAdmin" element={<MenuAdimn/>} />
         <Route path="/MenuUsuario" element={<MenuUsuario/>}/>
+        <Route path="/AddBancario" element={<AddBancario/>}></Route>
+        <Route path="/ListaBancarios" element={<ListaBancarios/>}></Route>
+        <Route path="/DetalhesBancarios" element={<DetalhesBancarios/>}></Route>
       </Routes>
     </Router>
   );

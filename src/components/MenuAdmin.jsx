@@ -1,15 +1,23 @@
 import React from 'react';
-import '../styles/MenuAdmin.css'; // Importe o arquivo de estilos
+import '../styles/MenuAdmin.css'; 
+import { Link } from 'react-router-dom';
 
 function MenuAdmin() {
   return (
     <div className="admin-menu"> {/* Use a classe admin-menu para aplicar os estilos */}
       <h2 className="welcome">Bem-vindo, Admin!</h2>
       <ul className="menu-items">
-        <li>Adicionar Bancário</li>
-        <li>Definir Salário</li>
-        <li>Usuarios</li>
-        <li>Bancarios</li>
+        <li>
+          <Link to="/AddBancario">Adicionar Bancário</Link>
+        </li>
+        <li>
+          <Link to="/ListaBancarios"> Bancarios</Link>
+        </li>
+          <li><Link to="/ListaUser">Lista de usuarios</Link>
+        </li>
+        <li>
+          <Link to="/">Voltar</Link>
+        </li>
       </ul>
     </div>
   );
