@@ -11,7 +11,7 @@ class Pessoa(db.Model):
     locdetrabalho = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False, unique=True)
     senha = db.Column(db.String(30), nullable=False)
-    dinheiroguardado = db.Column(db.Sting(10,2), nullable=False, default = 0)
+    dinheiroguardado = db.Column(db.Numeric(10,2), nullable=False, default = 0)
     idperfil = db.Column(db.Integer, nullable=False, default=2)
 
     def to_dict(self):
@@ -22,6 +22,7 @@ class Pessoa(db.Model):
             'cpf': self.cpf,
             'email': self.email,
             'senha': self.senha,
+            'dinheiroguardado': str(self.dinheiroguardado),
             'idperfil': self.idperfil,
             'tabela': 'pessoas'
         }
