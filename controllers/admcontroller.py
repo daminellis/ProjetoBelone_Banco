@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from database.db import db
 from models.admmodel import Bancarios
+from models.logmodels import Usuario
 from sqlalchemy import text
 from datetime import datetime
 
@@ -59,7 +60,8 @@ def adm_editter(idbancario=None):
         try:
             data = request.get_json()
             bancario = Bancarios.query.get_or_404(idbancario)
-            
+
+            # Atualizar campos do bancário
             bancario.nome = data.get('nome', bancario.nome)
             bancario.numero = data.get('numero', bancario.numero)
             bancario.cpf = data.get('cpf', bancario.cpf)
@@ -68,28 +70,35 @@ def adm_editter(idbancario=None):
             bancario.email = data.get('email', bancario.email)
             bancario.senha = data.get('senha', bancario.senha)
             bancario.idperfil = data.get('idperfil', bancario.idperfil)
-            
-            query2 = text("""
-                INSERT INTO dbbanco.usuarios (email, senha, id_perfil, nome)
-                VALUES (:email, :senha, :id_perfil, :nome)
-            """)
-            db.session.execute(query2, {
-                'email': data['email'],
-                'senha': data['senha'],
-                'id_perfil': data['idperfil'],
-                'nome': data['nome']
-            })
-            
+
+            # Atualiza ou insere na tabela usuarios
+            usuario = Usuario.query.filter_by(email=bancario.email).first()
+            if usuario:
+                usuario.nome = data.get('nome', usuario.nome)
+                usuario.senha = data.get('senha', usuario.senha)
+                usuario.id_perfil = data.get('idperfil', usuario.id_perfil)
+            else:
+                usuario = Usuario(
+                    nome=data['nome'],
+                    email=data['email'],
+                    senha=data['senha'],
+                    id_perfil=data['idperfil']
+                )
+                db.session.add(usuario)
+
             db.session.commit()
             return jsonify(bancario.to_dict()), 200
         except Exception as e:
             return jsonify({'error': 'Erro ao atualizar bancário: {}'.format(str(e))}), 400
 
-            
-
     elif request.method == 'DELETE':
         try:
             bancario = Bancarios.query.get_or_404(idbancario)
+            usuario = Usuario.query.filter_by(email=bancario.email).first()
+
+            if usuario:
+                db.session.delete(usuario)
+
             db.session.delete(bancario)
             db.session.commit()
             return jsonify({'message': 'Bancário deletado com sucesso'}), 200
