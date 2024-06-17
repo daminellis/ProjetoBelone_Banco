@@ -42,7 +42,7 @@ function DetalhesBancarios() {
     if (window.confirm('Tem certeza que deseja deletar este usuário?')) {
       axios.delete(`http://localhost:3000/bancarios/${location.state.idBancario}`)
         .then(response => {
-          navigate(-1); // Retorna para a página anterior após a deleção
+          navigate(-1); // Retorna para a página anterior após a deleção, DELECAO?
         })
         .catch(error => {
           setError('Erro ao deletar o usuário');

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import '../styles/MenuCadastro.css';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate hook
+import axios from 'axios';
+import moment from 'moment';  // Importando moment.js para formatação de datas
 
 function AddBancario() {
   const [formData, setFormData] = useState({
-    idbancario: '',
     nome: '',
     numero: '',
     cpf: '',
@@ -12,44 +11,47 @@ function AddBancario() {
     salario: '',
     email: '',
     senha: '',
+    idperfil: 3  // Valor padrão
   });
-
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Use navigate instead of history
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    // Enviar dados para o backend
-    fetch('http://localhost:3000/bancarios', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Erro ao cadastrar usuário');
+    try {
+      // Formatar a data de nascimento usando moment.js para garantir o formato correto
+      formData.nascimento = moment(formData.nascimento).format('YYYY-MM-DD');
+
+      const response = await axios.post('http://localhost:3000/bancarios', formData);
+      console.log('Resposta do servidor:', response.data);
+      setLoading(false);
+      // Limpar formulário após o sucesso
+      setFormData({
+        nome: '',
+        numero: '',
+        cpf: '',
+        nascimento: '',
+        salario: '',
+        email: '',
+        senha: '',
+        idperfil: 3
+      });
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error.message);
+      if (error.response) {
+        console.error('Detalhes do erro:', error.response.data);
+        setError('Erro ao cadastrar usuário: ' + error.response.data.error);
+      } else {
+        setError('Erro ao cadastrar usuário: ' + error.message);
       }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Success:', data);
-      navigate('/MenuAdmin'); // Navega para a rota após o cadastro bem-sucedido
-    })
-    .catch(error => {
-      console.error('Erro ao cadastrar usuário:', error);
-      setError('Falha no cadastro de usuário. Tente novamente.');
-    });
+      setLoading(false);
+    }
   };
 
   return (
