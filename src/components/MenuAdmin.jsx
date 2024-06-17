@@ -13,8 +13,6 @@ function MenuAdmin() {
         <li>
           <Link to="/ListaBancarios"> Bancarios</Link>
         </li>
-          <li><Link to="/ListaUser">Lista de usuarios</Link>
-        </li>
         <li>
           <Link to="/">Voltar</Link>
         </li>
