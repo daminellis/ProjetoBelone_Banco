@@ -1,24 +1,49 @@
 from flask import Flask, request, jsonify
 from database.db import db
 from models.admmodel import Bancarios
+from sqlalchemy import text
+from datetime import datetime
 
 def adm_controller(idbancario=None):
     if request.method == 'POST':
         try:
             data = request.get_json()
-            novo_bancario = Bancarios(
-                nome=data['nome'],
-                numero=data['numero'],
-                cpf=data['cpf'],
-                nascimento=data['nascimento'],
-                salario=data['salario'],
-                email=data['email'],
-                senha=data['senha'],
-                idperfil=data.get('idperfil', 3)  
-            )
-            db.session.add(novo_bancario)
+
+            # Convertendo a string de data para um objeto date
+            nascimento_date = datetime.strptime(data['nascimento'], '%Y-%m-%d').date()
+
+            # Execute raw SQL para inserir os dados do novo bancário
+            query1 = text("""
+                INSERT INTO dbbanco.bancario (nome, numero, cpf, nascimento, salario, email, senha, idperfil)
+                VALUES (:nome, :numero, :cpf, :nascimento, :salario, :email, :senha, :idperfil)
+            """)
+            db.session.execute(query1, {
+                'nome': data['nome'],
+                'numero': data['numero'],
+                'cpf': data['cpf'],
+                'nascimento': nascimento_date,
+                'salario': data['salario'],
+                'email': data['email'],
+                'senha': data['senha'],
+                'idperfil': data.get('idperfil', 3)  # Valor padrão se não especificado
+            })
+
+            # Execute raw SQL para inserir os dados do novo usuário
+            query2 = text("""
+                INSERT INTO dbbanco.usuarios (email, senha, id_perfil, nome)
+                VALUES (:email, :senha, :id_perfil, :nome)
+            """)
+            db.session.execute(query2, {
+                'email': data['email'],
+                'senha': data['senha'],
+                'id_perfil': data['idperfil'],
+                'nome': data['nome']
+            })
+
             db.session.commit()
-            return jsonify(novo_bancario.to_dict()), 201
+
+            return jsonify({'message': 'Bancário criado com sucesso!'}), 201
+
         except Exception as e:
             return jsonify({'error': 'Erro ao criar bancário: {}'.format(str(e))}), 400
 
@@ -44,10 +69,23 @@ def adm_editter(idbancario=None):
             bancario.senha = data.get('senha', bancario.senha)
             bancario.idperfil = data.get('idperfil', bancario.idperfil)
             
+            query2 = text("""
+                INSERT INTO dbbanco.usuarios (email, senha, id_perfil, nome)
+                VALUES (:email, :senha, :id_perfil, :nome)
+            """)
+            db.session.execute(query2, {
+                'email': data['email'],
+                'senha': data['senha'],
+                'id_perfil': data['idperfil'],
+                'nome': data['nome']
+            })
+            
             db.session.commit()
             return jsonify(bancario.to_dict()), 200
         except Exception as e:
             return jsonify({'error': 'Erro ao atualizar bancário: {}'.format(str(e))}), 400
+
+            
 
     elif request.method == 'DELETE':
         try:
