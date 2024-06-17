@@ -14,7 +14,7 @@ def adm_controller(idbancario=None):
                 salario=data['salario'],
                 email=data['email'],
                 senha=data['senha'],
-                idperfil=data.get('idperfil', 3)  # Valor padrão 3 se não fornecido
+                idperfil=data.get('idperfil', 3)  
             )
             db.session.add(novo_bancario)
             db.session.commit()
@@ -29,7 +29,8 @@ def adm_controller(idbancario=None):
         except Exception as e:
             return jsonify({'error': 'Erro ao buscar bancários: {}'.format(str(e))}), 400
 
-    elif request.method == 'PUT':
+def adm_editter(idbancario=None):
+    if request.method == 'PUT':
         try:
             data = request.get_json()
             bancario = Bancarios.query.get_or_404(idbancario)
@@ -57,6 +58,12 @@ def adm_controller(idbancario=None):
         except Exception as e:
             return jsonify({'error': 'Erro ao deletar bancário: {}'.format(str(e))}), 400
 
+    elif request.method == 'GET': 
+        try:
+            bancario = Bancarios.query.get_or_404(idbancario)
+            return jsonify(bancario.to_dict()), 200
+        except Exception as e:
+            return jsonify({'error': 'Bancário não encontrado'}), 404
+
     else:
         return jsonify({'error': 'Método HTTP não suportado'}), 405
-
