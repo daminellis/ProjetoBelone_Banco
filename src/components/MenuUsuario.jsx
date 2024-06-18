@@ -10,7 +10,7 @@ function MenuUsuario() {
           <a href="ConfigConta">Conta</a>
         </li>
         <li>
-          Transferências
+          <a href="FazerTransferencia">Fazer Transferencia</a>
         </li>
         <li>
           Pagamentos

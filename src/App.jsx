@@ -11,6 +11,7 @@ import DetalhesBancarios from './components/DetalhesBancarios';
 import AlterarSaldo from './components/AlterarSaldo';
 import DetalhesSaldo from './components/DetalhesSaldo';
 import ConfigConta from './components/ConfigConta';
+import FazerTransferencia from './components/FazerTransferencia';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/AlterarSaldo"      element={<AlterarSaldo/>}></Route>
         <Route path="/DetalhesSaldo"     element={<DetalhesSaldo/>}></Route>
         <Route path="/Configconta"       element={<ConfigConta/>}></Route>
+        <Route path="/FazerTransferencia"element={<FazerTransferencia/>}></Route>
       </Routes>
     </Router>
   );
