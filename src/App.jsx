@@ -8,19 +8,23 @@ import MenuAdimn from './components/MenuAdmin';
 import AddBancario from './components/AddBancario';
 import ListaBancarios from './components/ListaBancarios';
 import DetalhesBancarios from './components/DetalhesBancarios';
+import AlterarSaldo from './components/AlterarSaldo';
+import DetalhesSaldo from './components/DetalhesSaldo';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login/>} />
-        <Route path="/MenuCadastro" element={<MenuCadastro/>}/>
-        <Route path="/MenuBancario" element={<MenuBancario/>}/>
-        <Route path="/MenuAdmin" element={<MenuAdimn/>} />
-        <Route path="/MenuUsuario" element={<MenuUsuario/>}/>
-        <Route path="/AddBancario" element={<AddBancario/>}></Route>
-        <Route path="/ListaBancarios" element={<ListaBancarios/>}></Route>
+        <Route path="/MenuCadastro"      element={<MenuCadastro/>}/>
+        <Route path="/MenuBancario"      element={<MenuBancario/>}/>
+        <Route path="/MenuAdmin"         element={<MenuAdimn/>} />
+        <Route path="/MenuUsuario"       element={<MenuUsuario/>}/>
+        <Route path="/AddBancario"       element={<AddBancario/>}></Route>
+        <Route path="/ListaBancarios"    element={<ListaBancarios/>}></Route>
         <Route path="/DetalhesBancarios" element={<DetalhesBancarios/>}></Route>
+        <Route path="/AlterarSaldo"      element={<AlterarSaldo/>}></Route>
+        <Route path="/DetalhesSaldo"     element={<DetalhesSaldo/>}></Route>
       </Routes>
     </Router>
   );
