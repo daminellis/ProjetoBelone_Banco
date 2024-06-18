@@ -74,3 +74,36 @@ def alterar_dados():
             return jsonify({'message': 'Erro ao atualizar usuário', 'error': str(e)}), 500
 
     return jsonify({'message': 'Método não permitido'}), 405
+
+def deletar_usuario():
+    if request.method == 'DELETE':
+        data = request.get_json()
+
+        if not data.get('email'):
+            return jsonify({'message': 'Email do usuário não fornecido'}), 400
+        
+        try:
+            # Consulta no banco de dados usando SQLAlchemy ORM
+            usuario_pessoa = Pessoa.query.filter_by(email=data['email']).first()
+            usuario_usuario = Usuario.query.filter_by(email=data['email']).first()
+
+            if not usuario_pessoa and not usuario_usuario:
+                return jsonify({'message': 'Usuário não encontrado'}), 404
+
+            # Deleta o usuário e seus dados associados
+            if usuario_pessoa:
+                db.session.delete(usuario_pessoa)
+            if usuario_usuario:
+                db.session.delete(usuario_usuario)
+
+            # Commit da transação
+            db.session.commit()
+
+            return jsonify({'message': 'Usuário e seus dados associados deletados com sucesso'})
+
+        except SQLAlchemyError as e:
+            # Rollback em caso de erro
+            db.session.rollback()
+            return jsonify({'message': 'Erro ao deletar usuário', 'error': str(e)}), 500
+
+    return jsonify({'message': 'Método não permitido'}), 405
