@@ -26,3 +26,10 @@ class Pessoa(db.Model):
             'idperfil': self.idperfil,
             'tabela': 'pessoas'
         }
+    
+    def transferir_dinheiro(self, destinatario, quantidade):
+        if self.dinheiroguardado >= quantidade:
+            self.dinheiroguardado -= quantidade
+            destinatario.dinheiroguardado += quantidade
+            return True
+        return False
