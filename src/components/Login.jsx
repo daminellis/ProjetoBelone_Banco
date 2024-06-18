@@ -20,6 +20,9 @@ const Login = () => {
 
             console.log('Resposta do servidor:', response.data);
 
+            // Armazena o email no localStorage
+            localStorage.setItem('email', email);
+
             switch (response.data.nomeperfil) {
                 case 'admin':
                     navigate('/MenuAdmin');
@@ -33,10 +36,12 @@ const Login = () => {
                 case 'funcionario':
                     navigate('/MenuFuncionario');
                     break;
+                default:
+                    setError('Perfil não reconhecido');
             }
         } catch (error) {
             console.error('Erro ao fazer login:', error);
-            setError('Usuario ou senha incorretos. Tente novamente');
+            setError('Usuário ou senha incorretos. Tente novamente');
         }
     };
 

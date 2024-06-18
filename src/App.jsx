@@ -10,6 +10,7 @@ import ListaBancarios from './components/ListaBancarios';
 import DetalhesBancarios from './components/DetalhesBancarios';
 import AlterarSaldo from './components/AlterarSaldo';
 import DetalhesSaldo from './components/DetalhesSaldo';
+import ConfigConta from './components/ConfigConta';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/DetalhesBancarios" element={<DetalhesBancarios/>}></Route>
         <Route path="/AlterarSaldo"      element={<AlterarSaldo/>}></Route>
         <Route path="/DetalhesSaldo"     element={<DetalhesSaldo/>}></Route>
+        <Route path="/Configconta"       element={<ConfigConta/>}></Route>
       </Routes>
     </Router>
   );
