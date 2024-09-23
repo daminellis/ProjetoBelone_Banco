@@ -1,11 +1,9 @@
-# ProjetoBelone_Banco
+# Projeto_Banco
 
-Projeto final do belone terceira fase
+Projeto de um banco em react e python com flaskapi para fazer as requisiçoes e banco mysql
 Alunos : Matheus daminelli e Kauã Frassetto
 
 Projeto banco
-
-Terá ao minimo as tabelas de usuario, admin, bancario, trabalhadores, emprestimos, usuarios 
 
 Este projeto consta produzir um programa que possa ser utilizado para organizar as transações de um banco 
 
