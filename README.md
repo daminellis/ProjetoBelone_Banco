@@ -1,7 +1,8 @@
 # Projeto_Banco
 
 Projeto de um banco em react e python com flaskapi para fazer as requisiçoes e banco mysql
-Alunos : Matheus daminelli e Kauã Frassetto
+
+Aluno : Matheus daminelli 
 
 Projeto banco
 
